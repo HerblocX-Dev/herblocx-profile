@@ -1,0 +1,65 @@
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --color-moss: #1e3b2a;
+  --color-leaf: #3f6f47;
+  --color-sage: #eef2e7;
+  --color-ink: #16211a;
+  --color-ink-soft: #3a4a3c;
+  --color-gold: #b8892b;
+  --color-gold-light: #e3c677;
+  --color-gold-ink: #7a5a17;
+  --color-seed: #7c8a64;
+  --color-paper: #f8f9f2;
+  --color-line: #d3dac5;
+  --color-rule: #dce3d1;
+  --color-on-moss: #c3d0b8;
+  --color-on-moss-muted: #9eb394;
+  --color-nav-link: #c6d2bb;
+
+  --font-display: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+  --font-body: "Literata", Georgia, serif;
+}
+
+:root {
+  --moss: #1e3b2a;
+  --leaf: #3f6f47;
+  --sage: #eef2e7;
+  --ink: #16211a;
+  --ink-soft: #3a4a3c;
+  --gold: #b8892b;
+  --gold-light: #e3c677;
+  --gold-ink: #7a5a17;
+  --seed: #7c8a64;
+  --paper: #f8f9f2;
+  --line: #d3dac5;
+  --rule: #dce3d1;
+  --on-moss: #c3d0b8;
+  --on-moss-muted: #9eb394;
+  --nav-link: #c6d2bb;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #eef2e7;
+  color: #16211a;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+/* Custom styling for Lot Tag notched tag effect */
+.lot-tag-card {
+  position: relative;
+  box-shadow: 0 4px 20px -2px rgba(22, 33, 26, 0.08);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.lot-tag-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px -4px rgba(22, 33, 26, 0.12);
+}
