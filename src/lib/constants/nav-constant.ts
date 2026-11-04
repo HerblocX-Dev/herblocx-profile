@@ -15,7 +15,7 @@ export const NAV_ITEMS: NavItem[] = [
     key: "about",
     label: "About",
     mobileLabel: "About Herblocx",
-    href: "/about",
+    href: "/#about",
     icon: Building2,
   },
   {

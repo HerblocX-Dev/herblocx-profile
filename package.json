@@ -37,6 +37,7 @@
 		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
-		"@lucide/svelte": "^1.67.0"
+		"@lucide/svelte": "^1.67.0",
+		"vidstack": "^1.15.7"
 	}
 }
