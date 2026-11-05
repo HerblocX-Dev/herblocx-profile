@@ -70,8 +70,7 @@ jobs:
               }
 
               const payload = JSON.stringify({
-                username: "Vercel Deployments",
-                avatar_url: "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
+                username: "Pakde Joko",
                 embeds: [
                   {
                     title: "🚀 Deployment Succeeded (Production)",
