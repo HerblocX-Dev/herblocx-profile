@@ -1,0 +1,149 @@
+name: Notify Discord on Vercel Deployment
+
+on:
+  deployment_status:
+
+jobs:
+  notify-discord:
+    if: (github.event.deployment_status.state == 'success' || github.event.deployment_status.state == 'failure') && github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Send Discord Embed Notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.event.deployment.sha }}
+          STATE: ${{ github.event.deployment_status.state }}
+          LIVE_URL: ${{ github.event.deployment_status.environment_url || github.event.deployment_status.target_url }}
+          ENVIRONMENT: ${{ github.event.deployment.environment }}
+        run: |
+          node -e '
+            const https = require("https");
+
+            async function run() {
+              const webhookUrl = process.env.DISCORD_WEBHOOK;
+              if (!webhookUrl) {
+                console.error("Missing DISCORD_WEBHOOK_URL secret.");
+                process.exit(1);
+              }
+
+              const repo = process.env.REPO;
+              const sha = process.env.SHA;
+              const state = process.env.STATE; // "success" or "failure"
+              const liveUrl = process.env.LIVE_URL || "N/A";
+              const ghToken = process.env.GH_TOKEN;
+              const envName = process.env.ENVIRONMENT;
+
+              // 1. Fetch commit metadata
+              let commitMsg = "No commit message provided";
+              let author = "Unknown";
+              let commitUrl = `https://github.com/${repo}/commit/${sha}`;
+
+              try {
+                const commitData = await new Promise((resolve, reject) => {
+                  const req = https.request(`https://api.github.com/repos/${repo}/commits/${sha}`, {
+                    headers: {
+                      "User-Agent": "GitHub-Actions",
+                      "Authorization": `Bearer ${ghToken}`
+                    }
+                  }, (res) => {
+                    let data = "";
+                    res.on("data", chunk => data += chunk);
+                    res.on("end", () => resolve(JSON.parse(data)));
+                  });
+                  req.on("error", reject);
+                  req.end();
+                });
+
+                if (commitData.commit) {
+                  commitMsg = commitData.commit.message.split("\n")[0].trim();
+                  author = commitData.commit.author.name;
+                  commitUrl = commitData.html_url || commitUrl;
+                }
+              } catch (err) {
+                console.warn("Could not fetch commit details:", err.message);
+              }
+
+              // 2. Status colors: Green (0x2ECC71) on success, Red (0xE74C3C) on failure
+              const isSuccess = state === "success";
+              const embedColor = isSuccess ? 0x2ECC71 : 0xE74C3C;
+              const title = isSuccess 
+                ? `Deployment Succeeded (${envName})` 
+                : `Deployment Failed (${envName})`;
+
+              // 3. Assemble Discord Embed payload
+              const payload = JSON.stringify({
+                username: "Vercel Deployments",
+                avatar_url: "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
+                embeds: [
+                  {
+                    title: title,
+                    url: isSuccess && liveUrl !== "N/A" ? liveUrl : commitUrl,
+                    color: embedColor,
+                    timestamp: new Date().toISOString(),
+                    fields: [
+                      {
+                        name: "Commit",
+                        value: `[\`${sha.substring(0, 7)}\`](${commitUrl}) ${commitMsg}`,
+                        inline: false
+                      },
+                      {
+                        name: "Author",
+                        value: author,
+                        inline: true
+                      },
+                      {
+                        name: "Live URL",
+                        value: isSuccess && liveUrl !== "N/A" ? `[Open App](${liveUrl})` : "Unavailable",
+                        inline: true
+                      },
+                      {
+                        name: "Repository",
+                        value: `[${repo}](https://github.com/${repo})`,
+                        inline: true
+                      }
+                    ],
+                    footer: {
+                      text: `Status: ${state.toUpperCase()} • GitHub Actions`
+                    }
+                  }
+                ]
+              });
+
+              // 4. Send POST request to Discord Webhook
+              const parsedUrl = new URL(webhookUrl);
+              const req = https.request({
+                hostname: parsedUrl.hostname,
+                path: parsedUrl.pathname + parsedUrl.search,
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Content-Length": Buffer.byteLength(payload)
+                }
+              }, (res) => {
+                let responseBody = "";
+                res.on("data", chunk => responseBody += chunk);
+                res.on("end", () => {
+                  if (res.statusCode >= 200 && res.statusCode < 300) {
+                    console.log("Discord embed sent successfully.");
+                  } else {
+                    console.error(`Discord rejected webhook (${res.statusCode}):`, responseBody);
+                    process.exit(1);
+                  }
+                });
+              });
+
+              req.on("error", (e) => {
+                console.error("Webhook Request Error:", e);
+                process.exit(1);
+              });
+
+              req.write(payload);
+              req.end();
+            }
+
+            run();
+          '
