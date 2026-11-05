@@ -6,7 +6,7 @@
 
   interface Props {
     href?: string;
-    variant?: "primary" | "secondary" | "outline";
+    variant?: "primary" | "secondary" | "outline" | "outline-secondary";
     size?: "sm" | "md" | "lg";
     icon?: ButtonIcon;
     iconPosition?: "left" | "right";
@@ -37,6 +37,9 @@
       "bg-[#4f635c] hover:bg-[#7ba591] text-[#F8F9F2] border border-[#3B5B46]",
     outline:
       "border border-[#B8892B] text-[#E3C677] hover:bg-[#B8892B] hover:text-[#16211A]",
+
+    "outline-secondary":
+      "border-2 border-[#FBF3D5] text-[#FBF3D5] hover:bg-[#FBF3D5] hover:text-[#16211A]",
   };
 
   const sizeStyles = {

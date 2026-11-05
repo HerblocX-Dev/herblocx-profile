@@ -75,7 +75,7 @@
 
   <a
     href={NAV_CONTACT.ctaHref}
-    class="font-display flex h-12 w-full shrink-0 items-center gap-3 overflow-hidden rounded-full bg-[#90b493] px-[15px] text-[13px] font-semibold text-[#16211A] shadow-md shadow-black/20 transition-colors hover:bg-[#E3C677]"
+    class="font-display flex h-12 w-full shrink-0 items-center gap-3 overflow-hidden rounded-full bg-[#172E21] px-[15px] text-[13px] font-semibold text-white shadow-md shadow-black/20 transition-colors hover:bg-[#3B5B46] text-[#F8F9F2]"
   >
     <Send size={18} class="shrink-0" />
     <span

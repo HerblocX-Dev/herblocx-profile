@@ -1,39 +1,4 @@
 <script lang="ts">
-  import LotTag from "#lib/components/LotTag.svelte";
-  import { getCommodity } from "#lib/data/products.ts";
-
-  const turmeric = getCommodity("turmeric") || {
-    slug: "turmeric",
-    lotCode: "LOT HX-0241",
-    name: "Dried turmeric",
-    latinName: "Curcuma longa",
-    kicker: "RHIZOME",
-    category: "Rhizomes",
-    origin: "Central Java, ID",
-    originDetail: "Central Java",
-    summary: "Sun-dried finger turmeric with certified moisture readings.",
-    image: "/images/generated-1.png",
-    gradeBadge: "GRADE A",
-    moisture: "10.0% max",
-    purity: "99.0% min",
-    availability: "Mar – Nov",
-    availabilityMonths: [3, 4, 5, 6, 7, 8, 9, 10, 11],
-    peakMonths: [4, 5, 6],
-    stockMonths: [3, 7, 8, 9, 10, 11],
-    moq: "500 kg",
-    leadTime: "21 days",
-    packing: "25 kg PP bag",
-    grades: [
-      {
-        name: "GRADE A",
-        moisture: "10.0% max",
-        purity: "99.0% min",
-        moq: "500 kg",
-        leadTime: "21 days",
-        packing: "25 kg PP bag",
-      },
-    ],
-  };
 </script>
 
 <section
@@ -48,7 +13,7 @@
   </div>
 
   <div
-    class="relative z-10 bg-[#FBF3D5] w-full mx-auto px-6 md:px-32 pt-12 md:pt-20 pb-12 flex-1 flex flex-col justify-center"
+    class="relative z-10 bg-[#D6DAC8] w-full mx-auto px-6 md:px-32 pt-12 md:pt-20 pb-12 flex-1 flex flex-col justify-center"
   >
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
       <div class="lg:col-span-7 space-y-6 md:space-y-10 max-w-2xl">

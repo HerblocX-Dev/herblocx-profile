@@ -1,8 +1,6 @@
 <script lang="ts">
   import HeroSection from "../sections/hero-section.svelte";
-  import TrustStrip from "#lib/components/TrustStrip.svelte";
   import AboutSection from "../sections/about-section.svelte";
-  import ProcessSection from "../sections/process-section.svelte";
   import ProductsSection from "../sections/products-section.svelte";
   import LocationSection from "../sections/location-section.svelte";
   import ContactSection from "../sections/contact-section.svelte";
@@ -20,7 +18,7 @@
   <HeroSection />
   <!-- <TrustStrip /> -->
   <AboutSection />
-  <ProcessSection />
+  <!-- <ProcessSection /> -->
   <ProductsSection />
   <LocationSection />
   <ContactSection />

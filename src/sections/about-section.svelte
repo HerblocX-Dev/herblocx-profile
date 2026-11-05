@@ -34,14 +34,6 @@
         <div class="overflow-hidden w-full rounded-4xl shadow-sm">
           <YoutubePlayer src="https://youtu.be/trftd1ln8WI" />
         </div>
-        <div
-          class="flex items-center justify-between text-xs font-body text-[#7C8A64] px-1"
-        >
-          <span>Sorting and grading at a partner site, Central Java</span>
-          <span class="font-display text-[11px] text-[#7C8A64]"
-            >Herblocx, 2026</span
-          >
-        </div>
       </div>
 
       <div class="flex gap-6 items-center">
