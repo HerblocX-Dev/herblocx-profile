@@ -79,17 +79,17 @@
       </span>
     </div>
 
-    {#if commodity.kicker}
-      <div
-        class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#16211A]/80 to-transparent p-2.5 pt-6"
-      >
-        <p
-          class="truncate font-mono text-[9px] tracking-wider text-[#D8E4C7] uppercase"
-        >
-          {commodity.kicker}
-        </p>
-      </div>
-    {/if}
+    <!-- {#if commodity.kicker} -->
+    <!--   <div -->
+    <!--     class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#16211A]/80 to-transparent p-2.5 pt-6" -->
+    <!--   > -->
+    <!--     <p -->
+    <!--       class="truncate font-mono text-[9px] tracking-wider text-[#D8E4C7] uppercase" -->
+    <!--     > -->
+    <!--       {commodity.kicker} -->
+    <!--     </p> -->
+    <!--   </div> -->
+    <!-- {/if} -->
   </div>
 
   <div class="flex flex-1 flex-col justify-between gap-3 p-6">
@@ -205,7 +205,7 @@
     <div class="flex items-center justify-between pt-5">
       <button
         class="bg-[#3B5B46] hover:bg-[#3B5B46] text-[#F8F9F2] inline-flex
-        items-center rounded-xl justify-center font-display font-semibold transition-colors text-xl duration-150 select-none cursor-pointer p-1 px-3"
+        items-center rounded-xl justify-center font-display font-semibold transition-colors text-lg duration-150 select-none cursor-pointer p-1 px-3"
       >
         <a
           href="/products/{commodity.slug}"
