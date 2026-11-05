@@ -1,24 +1,29 @@
 name: Notify Discord on Vercel Deployment
 
 on:
-  deployment_status:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   notify-discord:
-    if: (github.event.deployment_status.state == 'success' || github.event.deployment_status.state == 'failure') && github.event.deployment.environment == 'Production'
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
+      - name: Wait for Vercel build to complete
+        run: |
+          echo "Waiting 35 seconds for Vercel to finish building..."
+          sleep 35
+
       - name: Send Discord Embed Notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
-          SHA: ${{ github.event.deployment.sha }}
-          STATE: ${{ github.event.deployment_status.state }}
-          LIVE_URL: ${{ github.event.deployment_status.environment_url || github.event.deployment_status.target_url }}
-          ENVIRONMENT: ${{ github.event.deployment.environment }}
+          SHA: ${{ github.sha }}
+          LIVE_URL: "https://herblocx-profile.vercel.app"
         run: |
           node -e '
             const https = require("https");
@@ -32,14 +37,11 @@ jobs:
 
               const repo = process.env.REPO;
               const sha = process.env.SHA;
-              const state = process.env.STATE; // "success" or "failure"
-              const liveUrl = process.env.LIVE_URL || "N/A";
+              const liveUrl = process.env.LIVE_URL;
               const ghToken = process.env.GH_TOKEN;
-              const envName = process.env.ENVIRONMENT;
 
-              // 1. Fetch commit metadata
-              let commitMsg = "No commit message provided";
-              let author = "Unknown";
+              let commitMsg = "Direct push to main";
+              let author = "Developer";
               let commitUrl = `https://github.com/${repo}/commit/${sha}`;
 
               try {
@@ -67,53 +69,44 @@ jobs:
                 console.warn("Could not fetch commit details:", err.message);
               }
 
-              // 2. Status colors: Green (0x2ECC71) on success, Red (0xE74C3C) on failure
-              const isSuccess = state === "success";
-              const embedColor = isSuccess ? 0x2ECC71 : 0xE74C3C;
-              const title = isSuccess 
-                ? `Deployment Succeeded (${envName})` 
-                : `Deployment Failed (${envName})`;
-
-              // 3. Assemble Discord Embed payload
               const payload = JSON.stringify({
                 username: "Vercel Deployments",
                 avatar_url: "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
                 embeds: [
                   {
-                    title: title,
-                    url: isSuccess && liveUrl !== "N/A" ? liveUrl : commitUrl,
-                    color: embedColor,
+                    title: "🚀 Deployment Succeeded (Production)",
+                    url: liveUrl,
+                    color: 0x2ECC71, // Green
                     timestamp: new Date().toISOString(),
                     fields: [
                       {
-                        name: "Commit",
+                        name: "📝 Commit",
                         value: `[\`${sha.substring(0, 7)}\`](${commitUrl}) ${commitMsg}`,
                         inline: false
                       },
                       {
-                        name: "Author",
+                        name: "👤 Author",
                         value: author,
                         inline: true
                       },
                       {
-                        name: "Live URL",
-                        value: isSuccess && liveUrl !== "N/A" ? `[Open App](${liveUrl})` : "Unavailable",
+                        name: "🌐 Live URL",
+                        value: `[Open App](${liveUrl})`,
                         inline: true
                       },
                       {
-                        name: "Repository",
+                        name: "📦 Repository",
                         value: `[${repo}](https://github.com/${repo})`,
                         inline: true
                       }
                     ],
                     footer: {
-                      text: `Status: ${state.toUpperCase()} • GitHub Actions`
+                      text: "Status: READY • GitHub Actions"
                     }
                   }
                 ]
               });
 
-              // 4. Send POST request to Discord Webhook
               const parsedUrl = new URL(webhookUrl);
               const req = https.request({
                 hostname: parsedUrl.hostname,
