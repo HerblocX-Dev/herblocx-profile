@@ -141,7 +141,7 @@
         {#if traceabilitySteps[activeIndex]}
           {@const current = traceabilitySteps[activeIndex]}
           <div
-            class="lg:col-span-5 text-[#1E3B2A] p-8 lg:p-10 rounded-3xl border border-[#3B5B46] shadow-lg flex flex-col justify-between min-h-[460px] lg:sticky lg:top-24"
+            class="lg:col-span-5 text-[#1E3B2A] p-8 lg:p-10 rounded-3xl border border-[#3B5B46] flex flex-col justify-between min-h-[460px] lg:sticky lg:top-24"
           >
             <div class="space-y-6">
               <div
@@ -165,22 +165,18 @@
                 <div class="grid grid-cols-2 gap-3 pt-2">
                   {#each current.photos as photo}
                     <div
-                      class="group/photo relative rounded-2xl bg-[#162B1F] border border-[#F8F9F2]/15 p-3.5 flex flex-col justify-between aspect-[4/3] overflow-hidden hover:border-[#B8892B] transition-colors"
+                      class="group/photo relative rounded-2xl border border-[#1E3B2A] p-3.5 flex flex-col justify-between aspect-[4/3] overflow-hidden transition-colors"
                     >
                       <div
-                        class="flex items-center justify-between text-[#B8892B]"
+                        class="flex items-center justify-between text-[#1E3B2A]"
                       >
                         <Camera size={18} />
-                        <ArrowUpRight
-                          size={14}
-                          class="opacity-60 group-hover/photo:opacity-100"
-                        />
                       </div>
                       <div class="space-y-1">
-                        <p class="text-xs font-semibold text-[#FEFBF3]">
+                        <p class="text-xs font-light text-[#1E3B2A]">
                           {photo.label}
                         </p>
-                        <p class="text-[11px] text-[#F8F9F2]/65 leading-tight">
+                        <p class="text-sm text-[#1E3B2A] leading-tight">
                           {photo.caption}
                         </p>
                       </div>
@@ -228,7 +224,7 @@
               class="w-full p-6 rounded-xl border text-left transition-all duration-300 flex flex-col justify-between group cursor-pointer {isSelected
                 ? 'bg-[#1E3B2A]  shadow-md'
                 : darkZigzag
-                  ? 'bg-[#EFECE1] border-[#3B5B46]'
+                  ? 'bg-[#ede8d3] border-[#3B5B46]'
                   : 'bg-[#F8F9F2] border-[#3B5B46]'}"
             >
               <div class="space-y-3 w-full">
@@ -241,7 +237,7 @@
                     <step.icon size={20} />
                   </div>
                   <span
-                    class="text-xs font-mono font-semibold {isSelected
+                    class="text-xs font-display font-semibold {isSelected
                       ? 'text-[#F8F9F2]'
                       : 'text-[#3B5B46]/70'}"
                   >
