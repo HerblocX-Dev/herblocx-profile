@@ -4,6 +4,7 @@
   import ProductsSection from "../sections/products-section.svelte";
   import LocationSection from "../sections/location-section.svelte";
   import ContactSection from "../sections/contact-section.svelte";
+  import ApproachSection from "../sections/approach-section.svelte";
 </script>
 
 <svelte:head>
@@ -20,6 +21,7 @@
   <AboutSection />
   <!-- <ProcessSection /> -->
   <ProductsSection />
+  <ApproachSection />
   <LocationSection />
   <ContactSection />
 </div>
