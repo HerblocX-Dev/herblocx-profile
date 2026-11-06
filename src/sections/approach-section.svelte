@@ -111,12 +111,10 @@
         "Digital draft documents are shared for buyer approval prior to final issuance to guarantee smooth customs clearance.",
     },
   ];
-
-  const isDarkCard = (index) => index % 2 === 1;
 </script>
 
 <section
-  id="approach"
+  id="our-approach"
   class="bg-[#FEFBF3] py-20 md:py-24 border-t border-[#3B5B46]/10"
 >
   <div class="mx-auto px-6 md:px-16 max-w-7xl w-full">
@@ -230,24 +228,24 @@
               class="w-full p-6 rounded-xl border text-left transition-all duration-300 flex flex-col justify-between group cursor-pointer {isSelected
                 ? 'bg-[#1E3B2A]  shadow-md'
                 : darkZigzag
-                  ? 'bg-[#EFECE1] border-[#3B5B46]/20'
-                  : 'bg-[#F8F9F2] border-[#3B5B46]/15'}"
+                  ? 'bg-[#EFECE1] border-[#3B5B46]'
+                  : 'bg-[#F8F9F2] border-[#3B5B46]'}"
             >
               <div class="space-y-3 w-full">
                 <div class="flex items-center justify-between">
                   <div
                     class="w-11 h-11 rounded-2xl flex items-center justify-center transition-colors duration-300 {isSelected
-                      ? 'bg-[#B8892B] text-[#16211A]'
-                      : 'bg-[#1E3B2A] text-[#F8F9F2] group-hover:bg-[#B8892B] group-hover:text-[#16211A]'}"
+                      ? 'bg-[#FEFBF3] text-[#16211A]'
+                      : 'bg-[#1E3B2A] text-[#F8F9F2] ]'}"
                   >
                     <step.icon size={20} />
                   </div>
                   <span
                     class="text-xs font-mono font-semibold {isSelected
-                      ? 'text-[#B8892B]'
+                      ? 'text-[#F8F9F2]'
                       : 'text-[#3B5B46]/70'}"
                   >
-                    0{i + 1} STEP
+                    #{i + 1} STEP
                   </span>
                 </div>
 

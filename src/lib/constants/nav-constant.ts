@@ -28,7 +28,7 @@ export const NAV_ITEMS: NavItem[] = [
   {
     key: "approach",
     label: "Our Approach",
-    href: "/our-approach",
+    href: "/#our-approach",
     icon: Compass,
   },
   {
