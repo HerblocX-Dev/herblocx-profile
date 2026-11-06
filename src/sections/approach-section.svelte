@@ -1,116 +1,9 @@
 <script>
-  import {
-    MapPin,
-    FileText,
-    Tag,
-    ClipboardCheck,
-    Camera,
-    FileSpreadsheet,
-    CheckCircle2,
-    ArrowUpRight,
-  } from "@lucide/svelte";
+  import OriginMap from "#lib/components/origin-map.svelte";
+  import { TRACEABILITY_STEPS } from "#lib/constants/traceability-constant.ts";
+  import { Camera } from "@lucide/svelte";
 
   let activeIndex = $state(0);
-
-  const traceabilitySteps = [
-    {
-      icon: MapPin,
-      title: "Origin & Sourcing Area",
-      description:
-        "Tracing each commodity back to its specific region and local farming community.",
-      metrics: [
-        { label: "Sourcing Regions", value: "Sumatra, Java, Sulawesi" },
-        { label: "Farm Plot ID", value: "Geo-referenced Coordinates" },
-        { label: "Elevation & Soil", value: "800m - 1,400m ASL Volcanic" },
-        { label: "Farmer Co-op", value: "Direct Verified Registry" },
-      ],
-      previewNote:
-        "Every lot includes regional origin mapping and cooperative registry verification prior to consolidation.",
-    },
-    {
-      icon: FileText,
-      title: "Harvest & Collection Records",
-      description:
-        "Documenting collection dates, volumes, and initial handling protocols.",
-      metrics: [
-        { label: "Harvest Window", value: "Logged by Week & Batch" },
-        { label: "Intake Weight", value: "Digital Scale Verified (kg/MT)" },
-        { label: "Post-Harvest Drying", value: "Sun-Dried / Mechanical Log" },
-        { label: "Collector Sign-off", value: "Field Officer Certified" },
-      ],
-      previewNote:
-        "Collection sheets track the exact time between harvest, drying, and warehouse intake to prevent fermentation or mold.",
-    },
-    {
-      icon: Tag,
-      title: "Batch & Lot Identification",
-      description:
-        "Assigning unique identifiers to ensure seamless tracking through processing.",
-      metrics: [
-        { label: "Lot Format", value: "ORG-YYYY-REG-BATCH#" },
-        { label: "Bag Tagging", value: "QR / Stenciled Jute & PP Bags" },
-        { label: "Processing Line", value: "Dedicated Batch Segregation" },
-        { label: "Warehouse Zone", value: "Pallet-Level Tracking" },
-      ],
-      previewNote:
-        "Zero cross-contamination: each lot retains its unique ID from raw material intake to container stuffing.",
-    },
-    {
-      icon: ClipboardCheck,
-      title: "Quality Inspection Reports",
-      description:
-        "Rigorous evaluations covering moisture content, grade, and purity standards.",
-      metrics: [
-        { label: "Moisture Content", value: "Tested (< 11% - 13% Std)" },
-        { label: "Foreign Matter", value: "< 0.5% Strict Sieve Check" },
-        { label: "Defect Count", value: "Graded per ISO / ASTA Spec" },
-        { label: "Third-Party Lab", value: "SGS / Sucofindo Available" },
-      ],
-      previewNote:
-        "Buyers receive a complete Certificate of Analysis (COA) detailing physical grading and moisture readings before shipment.",
-    },
-    {
-      icon: Camera,
-      title: "Product Photos & Sample Records",
-      description:
-        "Visual documentation and physical sample logs maintained for every shipment.",
-      isPhotoStep: true,
-      photos: [
-        {
-          label: "Raw & Graded Commodity",
-          caption: "High-res macro shot with color & size reference scale",
-        },
-        {
-          label: "Moisture Meter Reading",
-          caption: "Timestamped digital tester photo from the actual lot",
-        },
-        {
-          label: "Bagging & Lot Markings",
-          caption: "Export-ready packaging & stencil verification",
-        },
-        {
-          label: "Sealed Retention Sample",
-          caption: "300g–500g reference sample archived for 12 months",
-        },
-      ],
-      previewNote:
-        "Pre-shipment samples are couried via DHL/FedEx alongside a digital photo dossier of the exact lot being loaded.",
-    },
-    {
-      icon: FileSpreadsheet,
-      title: "Export & Shipment Documents",
-      description:
-        "Complete compliance paperwork, bills of lading, and certificates of origin.",
-      metrics: [
-        { label: "Shipping Core", value: "Bill of Lading (B/L), Packing List" },
-        { label: "Biosecurity", value: "Phytosanitary & Fumigation Cert" },
-        { label: "Customs & Trade", value: "Certificate of Origin (COO)" },
-        { label: "Quality Certs", value: "COA, Weight & Quality Note" },
-      ],
-      previewNote:
-        "Digital draft documents are shared for buyer approval prior to final issuance to guarantee smooth customs clearance.",
-    },
-  ];
 </script>
 
 <section
@@ -137,15 +30,15 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full items-start">
-        {#if traceabilitySteps[activeIndex]}
-          {@const current = traceabilitySteps[activeIndex]}
+      <div class="flex flex-col gap-8 w-full items-center">
+        {#if TRACEABILITY_STEPS[activeIndex]}
+          {@const current = TRACEABILITY_STEPS[activeIndex]}
           <div
-            class="lg:col-span-5 text-[#1E3B2A] p-8 lg:p-10 rounded-3xl border border-[#3B5B46] flex flex-col justify-between min-h-[460px] lg:sticky lg:top-24"
+            class="w-full text-[#1E3B2A] p-8 lg:p-10 rounded-3xl border border-[#3B5B46] flex flex-col justify-between min-h-[460px]"
           >
             <div class="space-y-6">
               <div
-                class="flex items-center justify-between border-b border-[#F8F9F2]/10 pb-4"
+                class="flex items-center justify-between border-b border-[#1E3B2A]/15 pb-4"
               >
                 <span class="text-xs font-display font-semibold text-[#1E3B2A]">
                   #{activeIndex + 1} VERIFICATION
@@ -161,8 +54,10 @@
                 </p>
               </div>
 
-              {#if current.isPhotoStep}
-                <div class="grid grid-cols-2 gap-3 pt-2">
+              {#if current.isMapStep}
+                <OriginMap />
+              {:else if current.isPhotoStep && current.photos}
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
                   {#each current.photos as photo}
                     <div
                       class="group/photo relative rounded-2xl border border-[#1E3B2A] p-3.5 flex flex-col justify-between aspect-[4/3] overflow-hidden transition-colors"
@@ -183,14 +78,14 @@
                     </div>
                   {/each}
                 </div>
-              {:else}
+              {:else if current.metrics}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   {#each current.metrics as metric}
                     <div
                       class="p-4 rounded-2xl border-[#162B1F] border space-y-6"
                     >
                       <span
-                        class="text-xs uppercase text-[#162B1F]/80 font-light"
+                        class="text-xs uppercase text-[#162B1F]/80 font-light block"
                       >
                         {metric.label}
                       </span>
@@ -214,7 +109,7 @@
         {/if}
 
         <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {#each traceabilitySteps as step, i}
+          {#each TRACEABILITY_STEPS as step, i}
             {@const isSelected = activeIndex === i}
             {@const darkZigzag = i % 4 === 1 || i % 4 === 2}
 
