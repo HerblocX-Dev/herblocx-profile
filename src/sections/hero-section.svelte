@@ -1,6 +1,6 @@
 <script lang="ts">
   import CtaButton from "#lib/components/commons/cta-button.svelte";
-  import { Sprout, Send } from "lucide-svelte";
+  import { Compass } from "@lucide/svelte";
 </script>
 
 <section
@@ -40,11 +40,13 @@
           </p>
 
           <div class="flex flex-wrap gap-4 items-center pt-2">
-            <CtaButton icon={Sprout} href="/products">
-              Explore Our Products
-            </CtaButton>
-            <CtaButton icon={Send} variant="secondary" href="/#contact">
-              Request a Quote
+            <CtaButton
+              iconPosition="left"
+              icon={Compass}
+              variant="primary"
+              href="/#about"
+            >
+              Have a Tour
             </CtaButton>
           </div>
         </div>
