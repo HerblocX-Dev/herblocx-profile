@@ -63,6 +63,15 @@
               </a>
             </li>
           {/each}
+          <li class="pt-1.5">
+            <a
+              href="/products"
+              class="text-[#E3C677] hover:text-[#F8F9F2] transition-colors font-semibold flex items-center gap-1 text-xs"
+            >
+              <span>Explore All Products</span>
+              <span>→</span>
+            </a>
+          </li>
         </ul>
       </div>
 

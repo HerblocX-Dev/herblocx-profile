@@ -47,6 +47,20 @@
       ports: item.exportInfo?.loadingPort?.[0] || item.origin,
     };
   });
+
+  const galleryFallbacks: Record<string, string> = {
+    "virgin-coconut-oil": "/gallery_commodities/1.webp",
+    "desiccated-coconut": "/gallery_commodities/2.webp",
+    "coconut-milk-powder": "/gallery_commodities/3.webp",
+    "coconut-sugar": "/gallery_commodities/1.webp",
+    "coconut-shell-charcoal": "/gallery_commodities/4.webp",
+    "cocopeat": "/gallery_commodities/2.webp",
+    "copra": "/gallery_commodities/3.webp",
+  };
+
+  let imageSource = $derived(
+    galleryFallbacks[commodity.slug] || commodity.image || "/gallery_commodities/1.webp"
+  );
 </script>
 
 <div
@@ -62,7 +76,7 @@
       : 'h-44'}"
   >
     <img
-      src={commodity.image}
+      src={imageSource}
       alt="{commodity.name} ({commodity.latinName})"
       class="pointer-events-none h-full w-full object-cover select-none"
       loading="lazy"
@@ -203,19 +217,14 @@
     {/if}
 
     <div class="flex items-center justify-between pt-5">
-      <button
-        class="bg-[#3B5B46] hover:bg-[#3B5B46] text-[#F8F9F2] inline-flex
-        items-center rounded-xl justify-center font-display font-semibold transition-colors text-lg duration-150 select-none cursor-pointer p-1 px-3"
+      <a
+        href="/products/{commodity.slug}"
+        draggable="false"
+        onclick={onlinkclick}
+        class="bg-[#3B5B46] hover:bg-[#1E3B2A] text-[#F8F9F2] inline-flex items-center rounded-xl justify-center font-display font-semibold transition-colors text-sm sm:text-base duration-150 select-none cursor-pointer py-2 px-3.5 shadow-xs"
       >
-        <a
-          href="/products/{commodity.slug}"
-          draggable="false"
-          onclick={onlinkclick}
-          class="font-display"
-        >
-          <span>View specification</span>
-        </a>
-      </button>
+        <span>View specification</span>
+      </a>
 
       {#if commodity.exportInfo?.loadingPort?.[0]}
         <span

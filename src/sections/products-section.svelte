@@ -23,8 +23,8 @@
           quality management.
         </p>
 
-        <CtaButton href="/product">
-          <span>See the full catalogue</span>
+        <CtaButton href="/products">
+          <span>Explore All Products</span>
         </CtaButton>
       </div>
 
