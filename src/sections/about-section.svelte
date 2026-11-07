@@ -36,10 +36,9 @@
         </div>
       </div>
 
-      <div class="flex gap-6 items-center">
-        <CtaButton icon={PlantPot} type="button">Explore Our Products</CtaButton
-        >
-        <CtaButton icon={Handshake} type="button" variant="secondary"
+      <div class="flex flex-wrap gap-4 sm:gap-6 items-center justify-center">
+        <CtaButton icon={PlantPot} href="/products">Explore Our Products</CtaButton>
+        <CtaButton icon={Handshake} href="/#contact" variant="secondary"
           >Become a Partner</CtaButton
         >
       </div>

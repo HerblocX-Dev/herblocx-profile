@@ -14,8 +14,13 @@
   let email = $state("");
   let country = $state("Japan");
   let phone = $state("");
-  let selectedCommodity = $state(initialCommodity);
-  let selectedGrade = $state(initialGrade);
+  let selectedCommodity = $state("ginger");
+  let selectedGrade = $state("Grade A");
+
+  $effect.pre(() => {
+    selectedCommodity = initialCommodity;
+    selectedGrade = initialGrade;
+  });
   let quantity = $state("");
   let unit = $state("kg");
   let port = $state("");

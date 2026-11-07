@@ -1,4 +1,6 @@
 <script lang="ts">
+  import CtaButton from "#lib/components/commons/cta-button.svelte";
+  import { Sprout, Send } from "lucide-svelte";
 </script>
 
 <section
@@ -34,8 +36,17 @@
           <p class="md:text-xl text-[#365449] leading-relaxed italic">
             "HerblocX connects Indonesian farmers, local producers, and global
             buyers through a managed agricultural sourcing and export
-            ecosystem.""
+            ecosystem."
           </p>
+
+          <div class="flex flex-wrap gap-4 items-center pt-2">
+            <CtaButton icon={Sprout} href="/products">
+              Explore Our Products
+            </CtaButton>
+            <CtaButton icon={Send} variant="secondary" href="/#contact">
+              Request a Quote
+            </CtaButton>
+          </div>
         </div>
       </div>
 

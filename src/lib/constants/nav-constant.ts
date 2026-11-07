@@ -22,7 +22,7 @@ export const NAV_ITEMS: NavItem[] = [
     key: "products",
     label: "Products",
     mobileLabel: "Product Catalogue",
-    href: "/#products",
+    href: "/products",
     icon: Sprout,
   },
   {

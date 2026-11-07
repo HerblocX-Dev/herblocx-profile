@@ -17,9 +17,7 @@
 
 <div class="w-full">
   <HeroSection />
-  <!-- <TrustStrip /> -->
   <AboutSection />
-  <!-- <ProcessSection /> -->
   <ProductsSection />
   <ApproachSection />
   <LocationSection />
