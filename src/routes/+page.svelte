@@ -26,6 +26,6 @@
   <NewsSection />
   <EncouragementSection />
   <ValuePropotion />
-  <LocationSection />
+  <!-- <LocationSection /> -->
   <ContactSection />
 </div>

@@ -51,9 +51,7 @@
   }
 </script>
 
-<div
-  class="bg-[#F8F9F2] border border-[#D3DAC5] p-6 sm:p-8 lg:p-9 rounded-[2px] shadow-sm"
->
+<div class="bg-[#F8F9F2] p-6 sm:p-8 lg:p-9 rounded-xl shadow-sm">
   {#if submitted}
     <div class="py-12 px-4 text-center space-y-4">
       <div
@@ -82,7 +80,6 @@
         <strong class="text-[#1E3B2A]"
           >{selectedCommodity} ({selectedGrade})</strong
         >. A dedicated trader will reply to
-        <strong class="text-[#1E3B2A]">{email}</strong> within 1 business day.
       </p>
       <div class="pt-4">
         <button
@@ -95,7 +92,6 @@
       </div>
     </div>
   {:else}
-    <!-- Form Header -->
     <div
       class="flex items-start justify-between gap-4 pb-6 border-b border-[#D3DAC5]"
     >
@@ -109,24 +105,6 @@
           Fields marked * are required.
         </p>
       </div>
-      <div
-        class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#E7EDDE] text-[#3F6F47] rounded-[2px] font-display text-[11px] font-semibold"
-      >
-        <svg
-          class="w-3.5 h-3.5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-        <span>1 business day</span>
-      </div>
     </div>
 
     {#if errorMessage}
@@ -138,7 +116,6 @@
     {/if}
 
     <form onsubmit={handleSubmit} class="mt-6 space-y-4">
-      <!-- Row: Name & Company -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="space-y-1.5">
           <label
@@ -153,7 +130,7 @@
             required
             bind:value={fullName}
             placeholder="Your name"
-            class="w-full h-10 px-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
+            class="w-full h-10 px-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
           />
         </div>
 
@@ -170,7 +147,7 @@
             required
             bind:value={company}
             placeholder="Company or trading name"
-            class="w-full h-10 px-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
+            class="w-full h-10 px-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
           />
         </div>
       </div>
@@ -189,7 +166,7 @@
           required
           bind:value={email}
           placeholder="name@company.com"
-          class="w-full h-10 px-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
+          class="w-full h-10 px-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
         />
       </div>
 
@@ -205,7 +182,7 @@
           <select
             id="country"
             bind:value={country}
-            class="w-full h-10 px-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47]"
+            class="w-full h-10 px-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47]"
           >
             <option value="Japan">Japan</option>
             <option value="Germany">Germany</option>
@@ -232,7 +209,7 @@
             type="tel"
             bind:value={phone}
             placeholder="Optional"
-            class="w-full h-10 px-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
+            class="w-full h-10 px-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
           />
         </div>
       </div>
@@ -249,7 +226,7 @@
           <select
             id="commodity"
             bind:value={selectedCommodity}
-            class="w-full h-10 px-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47]"
+            class="w-full h-10 px-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47]"
           >
             {#each COMMODITIES as c}
               <option value={c.slug}>{c.name}</option>
@@ -268,7 +245,7 @@
           <select
             id="grade"
             bind:value={selectedGrade}
-            class="w-full h-10 px-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47]"
+            class="w-full h-10 px-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47]"
           >
             <option value="Grade A">Grade A</option>
             <option value="Grade B">Grade B</option>
@@ -292,7 +269,7 @@
             type="number"
             bind:value={quantity}
             placeholder="e.g. 20"
-            class="w-full h-10 px-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
+            class="w-full h-10 px-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
           />
         </div>
 
@@ -306,7 +283,7 @@
           <select
             id="unit"
             bind:value={unit}
-            class="w-full h-10 px-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47]"
+            class="w-full h-10 px-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47]"
           >
             <option value="kg">kg</option>
             <option value="ton">ton (MT)</option>
@@ -327,7 +304,7 @@
             type="text"
             bind:value={port}
             placeholder="e.g. Port of Rotterdam"
-            class="w-full h-10 px-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
+            class="w-full h-10 px-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60"
           />
         </div>
       </div>
@@ -344,7 +321,7 @@
           rows="3"
           bind:value={message}
           placeholder="Specification, sample request, shipping terms, packaging…"
-          class="w-full p-3 bg-white border border-[#D9DFCE] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60 resize-y"
+          class="w-full p-3 bg-white border border-[#1E3B2A] text-[#16211A] font-body text-sm rounded-[2px] focus:outline-none focus:border-[#3F6F47] placeholder:text-[#6B785C]/60 resize-y"
         ></textarea>
       </div>
 
@@ -365,50 +342,16 @@
         </label>
       </div>
 
-      <!-- Submit Button -->
       <div class="pt-2">
         <button
           type="submit"
           disabled={isSubmitting}
-          class="w-full h-11 bg-[#B8892B] hover:bg-[#E3C677] text-[#16211A] font-display text-[14.5px] font-semibold transition-colors duration-150 rounded-[2px] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75"
+          class="w-full h-11 bg-[#1b2e22] text-[#F8F9F2] font-display text-[14.5px] font-semibold transition-colors duration-150 rounded-[2px] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75"
         >
           {#if isSubmitting}
-            <svg
-              class="animate-spin h-4 w-4 text-[#16211A]"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                class="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                stroke-width="4"
-              ></circle>
-              <path
-                class="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v8H4z"
-              ></path>
-            </svg>
             <span>Sending request...</span>
           {:else}
             <span>Request a quote</span>
-            <svg
-              class="w-4 h-4"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                d="M3 8h10M9 4l4 4-4 4"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
           {/if}
         </button>
       </div>
