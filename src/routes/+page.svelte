@@ -7,6 +7,7 @@
   import ApproachSection from "../sections/approach-section.svelte";
   import NewsSection from "../sections/news-section.svelte";
   import EncouragementSection from "../sections/encouragement-section.svelte";
+  import ValuePropotion from "../sections/value-propotion.svelte";
 </script>
 
 <svelte:head>
@@ -24,6 +25,7 @@
   <ApproachSection />
   <NewsSection />
   <EncouragementSection />
+  <ValuePropotion />
   <LocationSection />
   <ContactSection />
 </div>
