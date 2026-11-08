@@ -6,6 +6,7 @@
   import ContactSection from "../sections/contact-section.svelte";
   import ApproachSection from "../sections/approach-section.svelte";
   import NewsSection from "../sections/news-section.svelte";
+  import EncouragementSection from "../sections/encouragement-section.svelte";
 </script>
 
 <svelte:head>
@@ -22,6 +23,7 @@
   <ProductsSection />
   <ApproachSection />
   <NewsSection />
+  <EncouragementSection />
   <LocationSection />
   <ContactSection />
 </div>
